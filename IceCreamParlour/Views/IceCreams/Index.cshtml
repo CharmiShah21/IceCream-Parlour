@@ -1,0 +1,89 @@
+﻿@model IEnumerable<IceCreamParlour.Models.IceCream>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1> Ice-Creams</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@section scripts {
+
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#icecreamTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+}
+
+<input class="form-control" id="myInput" type="text" placeholder="Search..">
+<table class="table" id="icecreamTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IceCreamName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IceCreamDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IceCreamPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Flavour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Distributor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IceCreamName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IceCreamDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IceCreamPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand.BrandName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Flavour.FlavourName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Distributor.DistributorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IceCreamId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.IceCreamId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IceCreamId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
