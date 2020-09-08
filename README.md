@@ -1,4 +1,4 @@
-# Assignment2-database
+# IceCream Parlour
 
 
 ![Screenshot (159)](https://user-images.githubusercontent.com/65780191/85971320-dbaef580-b99a-11ea-812e-adc86666f19c.png)
